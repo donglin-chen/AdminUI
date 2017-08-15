@@ -1,0 +1,94 @@
+<div class="page-content" ng-controller="testController">
+    <div class="page-header">
+        <h1>控制台
+            <small>错误详情控制台输出</small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="form-inline">
+            <div class="input-group">
+                <select class="form-control ng-pristine ng-valid ng-not-empty ng-touched">
+                    <option ng-value="1" value="number:1" selected="selected">排序：注册时间</option>
+                    <option ng-value="2" value="number:2">排序：登录次数</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <select  class="form-control ng-pristine ng-valid ng-not-empty ng-touched">
+                    <option ng-value="1" value="number:1" selected="selected">排序：注册时间</option>
+                    <option ng-value="2" value="number:2">排序：登录次数</option>
+                </select>
+            </div>
+            <div class="input-group col-lg-2">
+                <input class="form-control" type="text" />
+            </div>
+            <div class="input-group">
+                <button class="btn btn-primary form-control ng-pristine ng-valid ng-not-empty ng-touched">提交</button>
+            </div>
+
+        </div>
+        <br/>
+        <div class="form-inline">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div >
+        <form class="form-inline pull-right ng-pristine ng-valid">
+            <div class="form-group">
+                <label class="ng-binding">共{{total}}条记录,每页显示</label>
+                <select  ng-model="search.offset"
+                         ng-options="display.name for display in pageSizes" ng-change="DoCtrlPagingAct('Paging Clicked', page, search.offset, total)">
+                </select>
+                <label>条&nbsp;</label>
+            </div>
+            <div class="form-group" paging
+                 page="currentPage"
+                 page-size="pageSize"
+                 total="total"
+                 show-prev-next="true"
+                 show-first-last="true"
+                 paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
+            </div>
+        </form>
+    </div>
+</div>

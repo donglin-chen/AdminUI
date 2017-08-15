@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="webApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="../frameworks/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../frameworks/bootstrap-3.3.7/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../frameworks/bootstrap-3.3.7/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../frameworks/bootstrap-3.3.7/css/bootstrapValidator.min.css">
+    <script src="../frameworks/bootstrap-3.3.7/js/jquery-2.0.3.min.js"></script>
+    <script src="../frameworks/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <script src="../frameworks/bootstrap-3.3.7/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../frameworks/bootstrap-3.3.7/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../frameworks/bootstrap-3.3.7/js/bootstrapValidator.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"/>
+    <link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet' type='text/css'>
+
+    <!--angular js-->
+    <link rel="stylesheet" href="../frameworks/angular-1.4.0/css/angular-toastr.css">
+    <link rel="stylesheet" href="../frameworks/angular-1.4.0/css/loading-bar.css">
+    <script src="../frameworks/angular-1.4.0/js/angular.js"></script>
+    <script src="../frameworks/angular-1.4.0/js/angular-animate.js"></script>
+    <script src="../frameworks/angular-1.4.0/js/angular-resource.js"></script>
+    <script src="../frameworks/angular-1.4.0/js/angular-route.js"></script>
+    <script src="../frameworks/angular-1.4.0/js/angular-toastr.tpls.js"></script>
+    <script src="../frameworks/angular-1.4.0/js/loading-bar.js"></script>
+    <script src="../frameworks/angular-1.4.0/js/paging.js"></script>
+    <script src="../frameworks/angular-1.4.0/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="../frameworks/angular-1.4.0/js/ui-route.js"></script>
+    <!--web app-->
+    <script src="../js/app.js"></script>
+    <script src="../js/service/index/index.js"></script>
+    <script src="../js/service/index/menu.js"></script>
+
+</head>
+<style type="text/css">
+
+    .page-sideBar {
+        width: 12%;
+        height: 100%;
+        position: fixed;
+        background-color: #4e5665;
+        top: 0px;
+        z-index: 100;
+        left: 0;
+    }
+
+    .page-topBar {
+        position: fixed;
+        background-color: #4e5665;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1100;
+        border-radius: 0;
+        height: 70px;
+    }
+
+    .page-topBar *{
+        line-height: 40px;
+    }
+
+    .menuSideBar {
+        position: absolute;
+        top: 80px;
+        width: 100%;
+        overflow: auto;
+        height: 80%;
+        color: white;
+        border: 0;
+        text-indent: 10px;
+    }
+
+    .panel-group * {
+        background-color: #4e5665;
+
+    }
+
+    .panel-group .panel-title {
+        font-size: 14px;
+        font-weight: 100;
+    }
+
+    .panel-body > label {
+        font-size: 13px;
+        width: 100%;
+        height: 30px;
+        display: block;
+        text-decoration: none;
+        cursor: pointer;
+        line-height: 30px;
+        margin: 0;
+        text-indent: 40px;
+    }
+
+    .labActive {
+        color: #ff7f00;
+        font-weight: 700;
+    }
+
+    .page-wrapper{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        /* left: 12%; */
+        /* top: 69px; */
+        background: #E9EBEE;
+
+    }
+
+    .contentBody{
+        width: 85%;
+        height: 100%;
+        position: fixed;
+        left: 14%;
+        top: 10%;
+        background:white;
+        padding-left:30px;
+
+    }
+
+</style>
+
+<body style="overflow: auto">
+<nav class="navbar navbar-default page-topBar" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="font-weight: bolder" href="#">后台管理系统模板</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="#"><span>iOS</span></a></li>
+                <li><a href="#"><span>SVN</span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span>Java</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span>spring</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav navbar-right hidden-x">
+            <li><a ng-href="#" href="#"><span>首页</span></a></li>
+            <li><a ng-click="showNotice()" href="javascript:void(0)"><span class="color-yellow">跳转到淘宝</span></a></li>
+            <li><a><span>跳转到京东</span></a>
+            </li>
+            <li><a><span>跳转到唯品会</span></a></li>
+            <li><a><span>去天猫</span></a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">
+                    <img ng-src="http://bbs.mob.com/uc_server/avatar.php?uid=190840&type=virtual&size=middle"
+                         alt="" height="36" width="36"
+                         src="http://bbs.mob.com/uc_server/avatar.php?uid=190840&type=virtual&size=middle">
+                </a>
+                <ul class="dropdown-menu ">
+                    <li><a ui-sref="developer" href="#!/developer">会员中心</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a>退出登录</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="main-container page-sideBar" id="main-container">
+    <div class="main-container-inner menuSideBar" style="">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <div class="sidebar" id="sidebar" ng-controller="menuController">
+            <div class="panel-group" id="accordion">
+                <div class="panel" ng-repeat="m in menu">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <label data-toggle="collapse" data-parent="#accordion"
+                                   href="#{{m.id}}" style="cursor: pointer;">
+                                {{m.name}}
+                            </label>
+                        </h4>
+                    </div>
+                    <div id="{{m.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <label ng-class="{'labActive':styleScopdeName==node.name}" ng-repeat="node in m.nodes"
+                                   ng-bind="node.name" ng-click="changeStyle(node.name,node.url)" ng-href="#/baidu"></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-wrapper">
+    <div class="container-fluid contentBody" ng-view></div>
+
+</div>
+
+</body>
+</html>
